@@ -13,12 +13,14 @@ fun todoTask1(collection: Collection<Int>): Nothing = TODO(
 
 
 fun task1(collection: Collection<Int>): String {
-    var str: String = "{"
+    val str = StringBuilder("{")
     collection.forEachIndexed {
         index, value ->
-        str += value.toString()
-        str += if (index == collection.size - 1) "" else ", "
+        str + value
+        if (index != collection.size - 1) str + ", "
     }
-    str += "}"
-    return str
+    str + "}"
+    return str.toString()
 }
+
+operator fun StringBuilder.plus(value: Any?): StringBuilder = append(value)
